@@ -3,7 +3,8 @@ package com.artemkudryavtsev.newsapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.artemkudryavtsev.newsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,16 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.dailyNewsTab.setOnClickListener {
-            it.findNavController().navigate(R.id.dailyNewsFragment)
-        }
-
-        binding.bookmarksTab.setOnClickListener {
-            it.findNavController().navigate(R.id.bookmarksFragment)
-        }
-
-        binding.settingsTab.setOnClickListener {
-            it.findNavController().navigate(R.id.settingsFragment)
-        }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
     }
 }

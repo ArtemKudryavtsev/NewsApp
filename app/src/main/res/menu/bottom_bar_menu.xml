@@ -3,15 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dailynewsBottombar"
+        android:id="@+id/dailyNewsFragment"
         android:title="@string/daily_news"
-        android:icon="@drawable/ic_daily_news"/>
+        android:icon="@drawable/ic_daily_news"
+        android:enabled="true"/>
     <item
-        android:id="@+id/bookmarksBottombar"
+        android:id="@+id/bookmarksFragment"
         android:title="@string/bookmarks"
-        android:icon="@drawable/ic_bookmarks"/>
+        android:icon="@drawable/ic_bookmarks"
+        android:enabled="true"/>
     <item
-        android:id="@+id/settingsBottombar"
+        android:id="@+id/settingsFragment"
         android:title="@string/settings"
-        android:icon="@drawable/ic_settings"/>
+        android:icon="@drawable/ic_settings"
+        android:enabled="true"/>
 </menu>

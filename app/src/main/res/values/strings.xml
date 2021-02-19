@@ -3,4 +3,12 @@
     <string name="daily_news">Daily News</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="languages_and_regions_of_interest_title">Languages and regions of interest</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="sound_title">Sound</string>
+    <string name="auto_play_videos_title">Auto-play videos</string>
+    <string name="article_text_size_title">Article text size</string>
+    <string name="notification_description">Notify me about updates to news</string>
+    <string name="sound_description">Auto-update apps at anytime</string>
 </resources>

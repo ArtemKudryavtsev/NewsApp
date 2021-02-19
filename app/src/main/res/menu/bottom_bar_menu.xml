@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dailynewsBottombar"
+        android:title="@string/daily_news"
+        android:icon="@drawable/ic_daily_news"/>
+    <item
+        android:id="@+id/bookmarksBottombar"
+        android:title="@string/bookmarks"
+        android:icon="@drawable/ic_bookmarks"/>
+    <item
+        android:id="@+id/settingsBottombar"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

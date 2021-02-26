@@ -10,7 +10,7 @@ import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.squareup.picasso.Picasso
 
-class DailyNewsAdapter : RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHolder>() {
+class DailyNewsAdapter(val articleClickListener: OnClickListener) : RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHolder>() {
     var articles = listOf<Article>()
         set(value) {
             field = value
@@ -26,6 +26,9 @@ class DailyNewsAdapter : RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHold
     override fun onBindViewHolder(holder: DailyNewsViewHolder, position: Int) {
         val article = articles[position]
         holder.bind(article)
+        holder.itemView.setOnClickListener {
+            articleClickListener.clickListener(article)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,5 +47,9 @@ class DailyNewsAdapter : RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHold
                 .error(R.drawable.ic_connection_error)
                 .into(view.findViewById<ImageView>(R.id.newsSmallImage))
         }
+    }
+
+    class OnClickListener(val clickListener: (article: Article) -> Unit) {
+        fun onClick(article: Article) = clickListener(article)
     }
 }

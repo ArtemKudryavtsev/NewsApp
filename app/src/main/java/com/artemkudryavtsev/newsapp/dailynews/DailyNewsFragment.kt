@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentDailyNewsBinding
@@ -22,14 +23,7 @@ class DailyNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_daily_news, container, false)
-        adapter = DailyNewsAdapter()
-        binding.dailyNewsRecyclerView.adapter = adapter
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val app = requireActivity().application
         val viewModelFactory = DailyNewsViewModelFactory(app)
         viewModel = ViewModelProvider(this, viewModelFactory)
@@ -42,5 +36,18 @@ class DailyNewsFragment : Fragment() {
             }
         })
 
+        adapter = DailyNewsAdapter(DailyNewsAdapter.OnClickListener {
+            viewModel.displayNewsDetails(it)
+        })
+        binding.dailyNewsRecyclerView.adapter = adapter
+
+        viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, {
+            it?.let {
+                findNavController()
+                    .navigate(DailyNewsFragmentDirections.actionDailyNewsFragmentToNewsDetailsFragment(it))
+            }
+        })
+
+        return binding.root
     }
 }

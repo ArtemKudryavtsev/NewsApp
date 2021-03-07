@@ -1,5 +1,6 @@
 package com.artemkudryavtsev.newsapp.dailynews
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentDailyNewsBinding
 
@@ -28,18 +28,28 @@ class DailyNewsFragment : Fragment() {
         val viewModelFactory = DailyNewsViewModelFactory(app)
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(DailyNewsViewModel::class.java)
-        viewModel.getCurrentData()
+
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.sharedPreferenceFile), Context.MODE_PRIVATE
+        )
+
+        val countryCode = sharedPref?.getString(
+            getString(R.string.countryCodeKey),
+            getString(R.string.defaultCountryCodeKey)
+        ) ?: getString(R.string.defaultCountryCodeKey)
+
+        viewModel.getCurrentData(countryCode)
+
+        adapter = DailyNewsAdapter(DailyNewsAdapter.OnClickListener {
+            viewModel.displayNewsDetails(it)
+        })
+        binding.dailyNewsRecyclerView.adapter = adapter
 
         viewModel.dataResponse.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.articles = it.articles
             }
         })
-
-        adapter = DailyNewsAdapter(DailyNewsAdapter.OnClickListener {
-            viewModel.displayNewsDetails(it)
-        })
-        binding.dailyNewsRecyclerView.adapter = adapter
 
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, {
             it?.let {

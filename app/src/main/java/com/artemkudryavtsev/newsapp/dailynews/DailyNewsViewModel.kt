@@ -22,13 +22,16 @@ class DailyNewsViewModel(
     private val _navigateToNewsDetails: MutableLiveData<Article> = MutableLiveData()
     val navigateToNewsDetails: LiveData<Article> = _navigateToNewsDetails
 
-    fun getCurrentData() {
+    fun getCurrentData(countryCode: String) {
         val api = NewsApi.retrofitService
 
         viewModelScope.launch {
             try {
                 val response =
-                    api.getTopHeadlines("us", app.applicationContext.getString(R.string.api_key))
+                    api.getTopHeadlines(
+                        countryCode,
+                        app.applicationContext.getString(R.string.api_key)
+                    )
                 _dataResponse.value = response
             } catch (e: Exception) {
                 Timber.d("$e")

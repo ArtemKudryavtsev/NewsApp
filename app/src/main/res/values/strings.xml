@@ -11,4 +11,12 @@
     <string name="article_text_size_title">Article text size</string>
     <string name="notification_description">Notify me about updates to news</string>
     <string name="sound_description">Auto-update apps at anytime</string>
+    <string name="publishedTitle">Published</string>
+
+    <string name="textViewPlaceholder">Test text placeholder</string>
+
+    <string name="sharedPreferenceFile">com.artemkudryavtsev.newsapp.sharedPreferenceFile</string>
+    <string name="countryCodeKey">countryCodeKey</string>
+    <string name="defaultCountryCodeKey">us</string>
+    <string name="defaultCountry">United States of America</string>
 </resources>

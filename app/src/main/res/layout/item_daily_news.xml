@@ -12,7 +12,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
-        style="@style/newsItemSmallText"
+        style="@style/smallGreyText"
         app:layout_constraintEnd_toStartOf="@+id/newsSmallImage"
         app:layout_constraintStart_toEndOf="@+id/newsSourceLogo"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newsSmallImage"
         tools:text="Published date"
-        style="@style/newsItemSmallText" />
+        style="@style/smallGreyText" />
 
     <ImageView
         android:id="@+id/newsSmallImage"

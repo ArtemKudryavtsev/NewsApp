@@ -10,7 +10,8 @@ import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.squareup.picasso.Picasso
 
-class DailyNewsAdapter(val articleClickListener: OnClickListener) : RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHolder>() {
+class DailyNewsAdapter(private val articleClickListener: OnClickListener) :
+    RecyclerView.Adapter<DailyNewsAdapter.DailyNewsViewHolder>() {
     var articles = listOf<Article>()
         set(value) {
             field = value
@@ -27,7 +28,7 @@ class DailyNewsAdapter(val articleClickListener: OnClickListener) : RecyclerView
         val article = articles[position]
         holder.bind(article)
         holder.itemView.setOnClickListener {
-            articleClickListener.clickListener(article)
+            articleClickListener.onClick(article)
         }
     }
 

@@ -18,7 +18,11 @@
         android:id="@+id/bookmarksFragment"
         android:name="com.artemkudryavtsev.newsapp.bookmarks.BookmarksFragment"
         android:label="BookmarksFragment"
-        tools:layout="@layout/fragment_bookmarks" />
+        tools:layout="@layout/fragment_bookmarks" >
+        <action
+            android:id="@+id/action_bookmarksFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.artemkudryavtsev.newsapp.settings.SettingsFragment"

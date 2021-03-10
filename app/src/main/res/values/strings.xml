@@ -19,4 +19,5 @@
     <string name="countryCodeKey">countryCodeKey</string>
     <string name="defaultCountryCodeKey">us</string>
     <string name="defaultCountry">United States of America</string>
+    <string name="open_in_a_browser">Open in a browser</string>
 </resources>

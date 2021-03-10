@@ -68,4 +68,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/newsItemMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="26dp"
+        android:text=":"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newsSmallImage" />
+
+    <ImageView
+        android:id="@+id/newsItemBoomark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="31dp"
+        app:layout_constraintEnd_toStartOf="@+id/newsItemMenu"
+        app:layout_constraintTop_toBottomOf="@+id/newsSmallImage"
+        app:srcCompat="@drawable/ic_bookmark_white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,9 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 data class TopHeadlines(
-    val status: String,
-    val totalResults: Int,
-    val articles: List<Article>
+    val status: String = "",
+    val totalResults: Int = 0,
+    val articles: List<Article> = listOf()
 )
 
 @Parcelize
@@ -15,10 +15,11 @@ data class Article(
     val author: String?,
     val title: String?,
     val description: String?,
-    val url: String?,
+    val url: String,
     val urlToImage: String?,
     val publishedAt: String?,
-    val content: String?
+    val content: String?,
+    var isBookmark: Boolean = false
 ) : Parcelable
 
 @Parcelize

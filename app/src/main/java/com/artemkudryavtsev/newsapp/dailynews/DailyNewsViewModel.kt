@@ -5,16 +5,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.artemkudryavtsev.newsapp.data.TopHeadlines
-import com.artemkudryavtsev.newsapp.network.NewsApi
+import com.artemkudryavtsev.newsapp.database.getDataBase
+import com.artemkudryavtsev.newsapp.repository.NewsAppRepository
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class DailyNewsViewModel(
-    val app: Application
+    private val app: Application
 ) : AndroidViewModel(app) {
+
+    private val repository = NewsAppRepository(getDataBase(app))
 
     private val _dataResponse: MutableLiveData<TopHeadlines> = MutableLiveData()
     val dataResponse: LiveData<TopHeadlines> = _dataResponse
@@ -23,19 +24,8 @@ class DailyNewsViewModel(
     val navigateToNewsDetails: LiveData<Article> = _navigateToNewsDetails
 
     fun getCurrentData(countryCode: String) {
-        val api = NewsApi.retrofitService
-
         viewModelScope.launch {
-            try {
-                val response =
-                    api.getTopHeadlines(
-                        countryCode,
-                        app.applicationContext.getString(R.string.api_key)
-                    )
-                _dataResponse.value = response
-            } catch (e: Exception) {
-                Timber.d("$e")
-            }
+            _dataResponse.value = repository.getTopHeadlines(app, countryCode)
         }
     }
 
@@ -45,5 +35,12 @@ class DailyNewsViewModel(
 
     fun doneDisplayNewsDetails() {
         _navigateToNewsDetails.value = null
+    }
+
+    fun addItemToBoomarks(article: Article) {
+        article.isBookmark = true
+        viewModelScope.launch {
+            repository.addBookmark(article)
+        }
     }
 }

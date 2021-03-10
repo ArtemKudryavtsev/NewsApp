@@ -1,21 +1,30 @@
 package com.artemkudryavtsev.newsapp.newsdetails
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.artemkudryavtsev.newsapp.R
+import com.artemkudryavtsev.newsapp.databinding.FragmentNewsDetailsBinding
 import com.squareup.picasso.Picasso
 
 class NewsDetailsFragment : Fragment() {
+    lateinit var binding: FragmentNewsDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_news_details, container, false)
+        binding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.fragment_news_details,
+            container,
+            false
+        )
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,10 +36,20 @@ class NewsDetailsFragment : Fragment() {
             .load(article.urlToImage)
             .placeholder(R.drawable.ic_broken_image)
             .error(R.drawable.ic_connection_error)
-            .into(view.findViewById<ImageView>(R.id.newsDetailsImage))
+            .into(binding.newsDetailsImage)
 
-        view.findViewById<TextView>(R.id.newsDetailsContent).text = article.content
-        view.findViewById<TextView>(R.id.newsDetailsTitle).text = article.title
-        view.findViewById<TextView>(R.id.newsDetailsPublishedDate).text = article.publishedAt
+        binding.newsDetailsContent.text =
+            article.content
+        binding.newsDetailsTitle.text = article.title
+        binding.newsDetailsPublishedDate.text = article.publishedAt
+
+        binding.urlText.apply {
+            text = article.url
+            setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW)
+                browserIntent.data = Uri.parse(article.url)
+                startActivity(browserIntent)
+            }
+        }
     }
 }

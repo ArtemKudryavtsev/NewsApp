@@ -40,9 +40,16 @@ class DailyNewsFragment : Fragment() {
 
         viewModel.getCurrentData(countryCode)
 
-        adapter = DailyNewsAdapter(DailyNewsAdapter.OnClickListener {
-            viewModel.displayNewsDetails(it)
-        })
+        adapter = DailyNewsAdapter(
+            DailyNewsAdapter.OnDailyNewsClickListener(
+                {
+                    viewModel.displayNewsDetails(it)
+                    viewModel.doneDisplayNewsDetails()
+                },
+                {
+                    viewModel.addItemToBoomarks(it)
+                })
+        )
         binding.dailyNewsRecyclerView.adapter = adapter
 
         viewModel.dataResponse.observe(viewLifecycleOwner, {
@@ -54,7 +61,9 @@ class DailyNewsFragment : Fragment() {
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, {
             it?.let {
                 findNavController()
-                    .navigate(DailyNewsFragmentDirections.actionDailyNewsFragmentToNewsDetailsFragment(it))
+                    .navigate(
+                        DailyNewsFragmentDirections.actionDailyNewsFragmentToNewsDetailsFragment(it)
+                    )
             }
         })
 

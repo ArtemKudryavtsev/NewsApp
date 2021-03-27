@@ -1,11 +1,9 @@
 package com.artemkudryavtsev.newsapp.repository
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.artemkudryavtsev.newsapp.data.TopHeadlines
-import com.artemkudryavtsev.newsapp.database.ArticleEntity
 import com.artemkudryavtsev.newsapp.database.NewsDatabase
 import com.artemkudryavtsev.newsapp.database.articleAsArticleEntity
 import com.artemkudryavtsev.newsapp.database.articleEntityAsArticleData
@@ -36,14 +34,18 @@ class NewsAppRepository(private val database: NewsDatabase) {
         return response
     }
 
-    suspend fun addBookmark(article: Article) {
-        withContext(Dispatchers.IO) {
-            val articleEntity = articleAsArticleEntity(article)
-            database.newsDao.addBookmark(articleEntity)
+    suspend fun getBoomark(article: Article): Article? {
+        return withContext(Dispatchers.IO) {
+            val result = database.newsDao.getBookmark(articleUrl = article.url)
+            if (result != null) {
+                return@withContext articleEntityAsArticleData(result)
+            } else {
+                return@withContext null
+            }
         }
     }
 
-    suspend fun getBookmarks(): List<Article> {
+    suspend fun getAllBookmarks(): List<Article> {
         return withContext(Dispatchers.IO) {
             database.newsDao.getAllBookmarks()
                 .filter {
@@ -55,16 +57,19 @@ class NewsAppRepository(private val database: NewsDatabase) {
         }
     }
 
-    suspend fun removeFromBookmarks(article: Article): Boolean {
-        return withContext(Dispatchers.IO) {
-            val defferedRowsDeleted = async {
-                database.newsDao.deleteBookmark(articleUrl = article.url)
-            }
-            val rowsDeleted = defferedRowsDeleted.await()
-            if (rowsDeleted > 0) {
-                return@withContext true
-            }
-            return@withContext false
+    suspend fun addToBookmarks(article: Article) = withContext(Dispatchers.IO) {
+        val articleEntity = articleAsArticleEntity(article)
+        database.newsDao.addToBookmarks(articleEntity)
+    }
+
+    suspend fun removeFromBookmarks(article: Article): Boolean = withContext(Dispatchers.IO) {
+        val defferedRowsDeleted = async {
+            database.newsDao.removeFromBookmarks(articleUrl = article.url)
         }
+        val rowsDeleted = defferedRowsDeleted.await()
+        if (rowsDeleted > 0) {
+            return@withContext true
+        }
+        return@withContext false
     }
 }

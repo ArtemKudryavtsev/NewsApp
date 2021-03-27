@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
+import com.artemkudryavtsev.newsapp.util.publishAtFormat
 import com.squareup.picasso.Picasso
 
 class DailyNewsAdapter(private val articleClickListener: OnDailyNewsClickListener) :
@@ -45,7 +46,8 @@ class DailyNewsAdapter(private val articleClickListener: OnDailyNewsClickListene
         fun bind(article: Article) {
             view.findViewById<TextView>(R.id.newsTitle).text = article.title
             view.findViewById<TextView>(R.id.newsSourceName).text = article.source?.name
-            view.findViewById<TextView>(R.id.newsPublishedDate).text = article.publishedAt
+            view.findViewById<TextView>(R.id.newsPublishedDate).text =
+                publishAtFormat(article.publishedAt)
             Picasso
                 .get()
                 .load(article.urlToImage)

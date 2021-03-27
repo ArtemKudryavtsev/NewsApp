@@ -40,7 +40,7 @@ class DailyNewsViewModel(
     fun addItemToBoomarks(article: Article) {
         article.isBookmark = true
         viewModelScope.launch {
-            repository.addBookmark(article)
+            repository.addToBookmarks(article)
         }
     }
 }

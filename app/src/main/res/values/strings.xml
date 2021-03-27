@@ -20,4 +20,7 @@
     <string name="defaultCountryCodeKey">us</string>
     <string name="defaultCountry">United States of America</string>
     <string name="open_in_a_browser">Open in a browser</string>
+    <string name="share_the_article">Share the article</string>
+    <string name="share">Share</string>
+    <string name="boomark_the_article">Boomark the article</string>
 </resources>

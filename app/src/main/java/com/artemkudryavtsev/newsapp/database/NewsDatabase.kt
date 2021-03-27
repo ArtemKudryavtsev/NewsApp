@@ -6,17 +6,17 @@ import androidx.room.*
 
 @Dao
 interface NewsDao {
+    @Query("SELECT * FROM ArticleEntity WHERE url = :articleUrl")
+    fun getBookmark(articleUrl: String): ArticleEntity?
+
     @Query("SELECT * FROM ArticleEntity")
     fun getAllBookmarks(): List<ArticleEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addBookmark(articleEntity: ArticleEntity)
-
-    @Query("SELECT * FROM ArticleEntity WHERE url = :articleUrl")
-    fun getBookmark(articleUrl: String): ArticleEntity
+    fun addToBookmarks(articleEntity: ArticleEntity)
 
     @Query("DELETE FROM ArticleEntity WHERE url = :articleUrl")
-    fun deleteBookmark(articleUrl: String): Int
+    fun removeFromBookmarks(articleUrl: String): Int
 }
 
 @Database(entities = [ArticleEntity::class], version = 1)

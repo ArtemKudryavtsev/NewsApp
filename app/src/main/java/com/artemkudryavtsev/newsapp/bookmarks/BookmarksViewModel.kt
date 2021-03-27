@@ -24,7 +24,7 @@ class BookmarksViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getBookmarks() {
         viewModelScope.launch {
-            _bookmarksArticles.value = repository.getBookmarks()
+            _bookmarksArticles.value = repository.getAllBookmarks()
         }
     }
 

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class NewsDetailsViewModel(
-    private val app: Application
+    app: Application
 ) : AndroidViewModel(app) {
     private val repository = NewsAppRepository(getDataBase(app))
 

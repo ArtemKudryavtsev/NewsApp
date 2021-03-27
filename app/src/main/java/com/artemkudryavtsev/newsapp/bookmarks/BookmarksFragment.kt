@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.artemkudryavtsev.newsapp.R
+import com.artemkudryavtsev.newsapp.newsbottomsheetdialog.NewsBottomSheetDialogFragment
 import com.artemkudryavtsev.newsapp.databinding.FragmentBookmarksBinding
 
 class BookmarksFragment : Fragment() {
@@ -34,6 +35,15 @@ class BookmarksFragment : Fragment() {
                 },
                 {
                     viewModel.removeFromBookmarks(it)
+                },
+                {
+                    NewsBottomSheetDialogFragment(
+                        it,
+                        NewsBottomSheetDialogFragment.FragmentType.BOOKMARKS
+                    ).show(
+                        parentFragmentManager,
+                        "bottomSheetDialog"
+                    )
                 })
         )
         binding.bookmarksRecyclerView.adapter = adapter

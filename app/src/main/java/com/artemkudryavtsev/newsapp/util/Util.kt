@@ -1,5 +1,11 @@
 package com.artemkudryavtsev.newsapp.util
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.core.content.ContextCompat.startActivity
+import com.artemkudryavtsev.newsapp.R
+import com.artemkudryavtsev.newsapp.data.Article
 import com.artemkudryavtsev.newsapp.settings.languageandregion.Countries
 import timber.log.Timber
 import java.text.ParseException
@@ -34,4 +40,20 @@ fun publishAtFormat(dateOfPublishing: String?): String? {
     } else {
         return dateOfPublishing
     }
+}
+
+fun share(context: Context, article: Article) {
+    val shareIntent = Intent(Intent.ACTION_SEND)
+    shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT, article.url)
+    val title = context.resources.getString(R.string.share)
+    val shareIntentWithChooser = Intent.createChooser(shareIntent, title)
+    if (shareIntentWithChooser.resolveActivity(context.applicationContext.packageManager) != null) {
+        context.startActivity(shareIntentWithChooser)
+    }
+}
+
+fun openTheUrl(context: Context, article: Article) {
+    val browserIntent = Intent(Intent.ACTION_VIEW)
+    browserIntent.data = Uri.parse(article.url)
+    context.startActivity(browserIntent)
 }

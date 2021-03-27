@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
+import com.artemkudryavtsev.newsapp.util.publishAtFormat
 import com.squareup.picasso.Picasso
 
 class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListener) :
@@ -35,6 +36,10 @@ class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListen
         holder.itemView.setOnClickListener {
             bookmarkClickListener.onItemClicked(bookmarkArticle)
         }
+
+        holder.itemView.findViewById<ImageView>(R.id.newsItemMore).setOnClickListener {
+            bookmarkClickListener.onShowMoreOptionsClicked(bookmarkArticle)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +50,8 @@ class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListen
         fun bind(article: Article) {
             view.findViewById<TextView>(R.id.newsTitle).text = article.title
             view.findViewById<TextView>(R.id.newsSourceName).text = article.source?.name
-            view.findViewById<TextView>(R.id.newsPublishedDate).text = article.publishedAt
+            view.findViewById<TextView>(R.id.newsPublishedDate).text =
+                publishAtFormat(article.publishedAt)
             Picasso
                 .get()
                 .load(article.urlToImage)
@@ -59,10 +65,13 @@ class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListen
 
     class OnBookmarksClickListener(
         val itemClickListener: (article: Article) -> Unit,
-        val removeFromBookmarksListener: (article: Article) -> Unit
+        val removeFromBookmarksListener: (article: Article) -> Unit,
+        val showMoreOptions: (article: Article) -> Unit
     ) {
         fun onItemClicked(article: Article) = itemClickListener(article)
 
         fun onRemoveFromBookmarksClicked(article: Article) = removeFromBookmarksListener(article)
+
+        fun onShowMoreOptionsClicked(article: Article) = showMoreOptions(article)
     }
 }

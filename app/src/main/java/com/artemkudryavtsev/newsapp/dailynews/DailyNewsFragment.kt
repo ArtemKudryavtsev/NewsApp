@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentDailyNewsBinding
+import com.artemkudryavtsev.newsapp.newsbottomsheetdialog.NewsBottomSheetDialogFragment
 
 class DailyNewsFragment : Fragment() {
 
@@ -48,6 +49,15 @@ class DailyNewsFragment : Fragment() {
                 },
                 {
                     viewModel.addItemToBoomarks(it)
+                },
+                {
+                    NewsBottomSheetDialogFragment(
+                        it,
+                        NewsBottomSheetDialogFragment.FragmentType.DAILY_NEWS
+                    ).show(
+                        parentFragmentManager,
+                        "bottomSheetDialog"
+                    )
                 })
         )
         binding.dailyNewsRecyclerView.adapter = adapter

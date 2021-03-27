@@ -36,6 +36,10 @@ class DailyNewsAdapter(private val articleClickListener: OnDailyNewsClickListene
         holder.itemView.setOnClickListener {
             articleClickListener.onItemClicked(article)
         }
+
+        holder.itemView.findViewById<ImageView>(R.id.newsItemMore).setOnClickListener {
+            articleClickListener.onShowMoreOptionsClicked(article)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -54,15 +58,19 @@ class DailyNewsAdapter(private val articleClickListener: OnDailyNewsClickListene
                 .placeholder(R.drawable.ic_broken_image)
                 .error(R.drawable.ic_connection_error)
                 .into(view.findViewById<ImageView>(R.id.newsSmallImage))
+            view.findViewById<ImageView>(R.id.newsItemBoomark).visibility = View.GONE
         }
     }
 
     class OnDailyNewsClickListener(
         val itemClickListener: (article: Article) -> Unit,
-        val addToBookmarksListener: (article: Article) -> Unit
+        val addToBookmarksListener: (article: Article) -> Unit,
+        val showMoreOptions: (article: Article) -> Unit
     ) {
         fun onItemClicked(article: Article) = itemClickListener(article)
 
         fun onAddToBookmarksClicked(article: Article) = addToBookmarksListener(article)
+
+        fun onShowMoreOptionsClicked(article: Article) = showMoreOptions(article)
     }
 }

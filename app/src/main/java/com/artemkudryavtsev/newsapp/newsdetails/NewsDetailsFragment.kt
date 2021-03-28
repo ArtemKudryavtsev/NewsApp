@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.artemkudryavtsev.newsapp.databinding.FragmentNewsDetailsBinding
+import com.artemkudryavtsev.newsapp.util.getBigImage
 import com.artemkudryavtsev.newsapp.util.openTheUrl
 import com.artemkudryavtsev.newsapp.util.publishAtFormat
 import com.artemkudryavtsev.newsapp.util.share
@@ -45,12 +46,7 @@ class NewsDetailsFragment : Fragment() {
         binding.topAppBar.setupWithNavController(findNavController())
         binding.topAppBar.title = ""
 
-        Picasso
-            .get()
-            .load(article.urlToImage)
-            .placeholder(R.drawable.ic_broken_image)
-            .error(R.drawable.ic_connection_error)
-            .into(binding.newsDetailsImage)
+        getBigImage(article, binding.newsDetailsImage)
 
         binding.newsDetailsContent.text =
             article.content

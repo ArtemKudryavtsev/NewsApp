@@ -12,12 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top">
+
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
+                style="@style/WhiteAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/menu_news_details"
-                style="@style/WhiteAppBar" />
+                app:menu="@menu/menu_news_details" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
@@ -35,6 +36,7 @@
                     android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/ic_daily_news"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -52,6 +54,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/newsDetailsSourceLogo"
                     tools:text="Title" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height"
+                    android:layout_marginStart="@dimen/divider_margin"
+                    android:layout_marginEnd="@dimen/divider_margin"
+                    android:background="@color/divider_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newsDetailsTitle" />
 
                 <TextView
                     android:id="@+id/newsDetailsPublishedTitle"
@@ -92,11 +104,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:background="@color/teal_700"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_daily_news"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/newsDetailsPublishedDate"
                     tools:srcCompat="@tools:sample/avatars" />

@@ -1,16 +1,18 @@
 package com.artemkudryavtsev.newsapp.bookmarks
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.artemkudryavtsev.newsapp.R
-import com.artemkudryavtsev.newsapp.newsbottomsheetdialog.NewsBottomSheetDialogFragment
 import com.artemkudryavtsev.newsapp.databinding.FragmentBookmarksBinding
+import com.artemkudryavtsev.newsapp.newsbottomsheetdialog.NewsBottomSheetDialogFragment
 
 class BookmarksFragment : Fragment() {
     private lateinit var adapter: BookmarksAdapter
@@ -26,6 +28,18 @@ class BookmarksFragment : Fragment() {
         val app = requireActivity().application
         val viewModelFactory = BookmarksViewModelFactory(app)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BookmarksViewModel::class.java)
+
+        val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.divider_layer,
+                null
+            )!!
+        )
+        binding.bookmarksRecyclerView.addItemDecoration(
+            dividerItemDecoration
+        )
 
         adapter = BookmarksAdapter(
             BookmarksAdapter.OnBookmarksClickListener(

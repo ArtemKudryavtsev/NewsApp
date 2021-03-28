@@ -3,10 +3,11 @@ package com.artemkudryavtsev.newsapp.util
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.ImageView
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
 import com.artemkudryavtsev.newsapp.settings.languageandregion.Countries
+import com.squareup.picasso.Picasso
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -56,4 +57,26 @@ fun openTheUrl(context: Context, article: Article) {
     val browserIntent = Intent(Intent.ACTION_VIEW)
     browserIntent.data = Uri.parse(article.url)
     context.startActivity(browserIntent)
+}
+
+fun getSmallImage(article: Article, imageView: ImageView) {
+    Picasso
+        .get()
+        .load(article.urlToImage)
+        .centerCrop()
+        .resize(500, 500)
+        .placeholder(R.drawable.ic_broken_image)
+        .error(R.drawable.ic_connection_error)
+        .into(imageView)
+}
+
+fun getBigImage(article: Article, imageView: ImageView) {
+    Picasso
+        .get()
+        .load(article.urlToImage)
+        .centerInside()
+        .resize(1000, 625)
+        .placeholder(R.drawable.ic_broken_image)
+        .error(R.drawable.ic_connection_error)
+        .into(imageView)
 }

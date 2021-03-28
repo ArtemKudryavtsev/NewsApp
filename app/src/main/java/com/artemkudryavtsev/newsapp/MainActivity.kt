@@ -1,8 +1,8 @@
 package com.artemkudryavtsev.newsapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.newsDetailsFragment -> binding.bottomNavigation.visibility = View.GONE
+                R.id.newsDetailsFragment -> {
+                    binding.bottomNavigation.visibility = View.GONE
+                }
                 else -> binding.bottomNavigation.visibility = View.VISIBLE
             }
         }

@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.data.Article
+import com.artemkudryavtsev.newsapp.util.getSmallImage
 import com.artemkudryavtsev.newsapp.util.publishAtFormat
-import com.squareup.picasso.Picasso
 
 class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListener) :
     RecyclerView.Adapter<BookmarksAdapter.BookmarksViewHolder>() {
@@ -52,12 +52,7 @@ class BookmarksAdapter(private val bookmarkClickListener: OnBookmarksClickListen
             view.findViewById<TextView>(R.id.newsSourceName).text = article.source?.name
             view.findViewById<TextView>(R.id.newsPublishedDate).text =
                 publishAtFormat(article.publishedAt)
-            Picasso
-                .get()
-                .load(article.urlToImage)
-                .placeholder(R.drawable.ic_broken_image)
-                .error(R.drawable.ic_connection_error)
-                .into(view.findViewById<ImageView>(R.id.newsSmallImage))
+            getSmallImage(article, view.findViewById(R.id.newsSmallImage))
             view.findViewById<ImageView>(R.id.newsItemBoomark)
                 .setImageResource(R.drawable.ic_bookmark_black)
         }

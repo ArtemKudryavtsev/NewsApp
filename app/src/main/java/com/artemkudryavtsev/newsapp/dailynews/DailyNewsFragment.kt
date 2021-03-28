@@ -2,13 +2,15 @@ package com.artemkudryavtsev.newsapp.dailynews
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentDailyNewsBinding
 import com.artemkudryavtsev.newsapp.newsbottomsheetdialog.NewsBottomSheetDialogFragment
@@ -40,6 +42,18 @@ class DailyNewsFragment : Fragment() {
         ) ?: getString(R.string.defaultCountryCodeKey)
 
         viewModel.getCurrentData(countryCode)
+
+        val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.divider_layer,
+                null
+            )!!
+        )
+        binding.dailyNewsRecyclerView.addItemDecoration(
+            dividerItemDecoration
+        )
 
         adapter = DailyNewsAdapter(
             DailyNewsAdapter.OnDailyNewsClickListener(

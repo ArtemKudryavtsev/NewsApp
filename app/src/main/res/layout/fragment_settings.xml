@@ -65,7 +65,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/settingNotification"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/settingNotificationTitle"
@@ -105,7 +106,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/settingSound"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/settingSoundTitle"
@@ -145,7 +147,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/settingAutoPlayVideos"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/settingAutoPlayVideosTitle"
@@ -174,7 +177,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/settingArticleTextSize"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/settingArticleTextSizeTitle"

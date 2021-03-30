@@ -70,12 +70,19 @@ fun getSmallImage(article: Article, imageView: ImageView) {
         .into(imageView)
 }
 
-fun getBigImage(article: Article, imageView: ImageView) {
+fun getBigImage(
+    context: Context,
+    article: Article,
+    imageView: ImageView
+) {
+    val metrics = context.resources.displayMetrics
+    val height = metrics.heightPixels
+    val width = (height / 1.6).toInt()
     Picasso
         .get()
         .load(article.urlToImage)
         .centerInside()
-        .resize(1000, 625)
+        .resize(width, height)
         .placeholder(R.drawable.ic_broken_image)
         .error(R.drawable.ic_connection_error)
         .into(imageView)

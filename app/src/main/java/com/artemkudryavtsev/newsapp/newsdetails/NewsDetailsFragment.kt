@@ -14,7 +14,6 @@ import com.artemkudryavtsev.newsapp.util.getBigImage
 import com.artemkudryavtsev.newsapp.util.openTheUrl
 import com.artemkudryavtsev.newsapp.util.publishAtFormat
 import com.artemkudryavtsev.newsapp.util.share
-import com.squareup.picasso.Picasso
 
 class NewsDetailsFragment : Fragment() {
     private lateinit var binding: FragmentNewsDetailsBinding
@@ -46,7 +45,7 @@ class NewsDetailsFragment : Fragment() {
         binding.topAppBar.setupWithNavController(findNavController())
         binding.topAppBar.title = ""
 
-        getBigImage(article, binding.newsDetailsImage)
+        getBigImage(requireContext(), article, binding.newsDetailsImage)
 
         binding.newsDetailsContent.text =
             article.content

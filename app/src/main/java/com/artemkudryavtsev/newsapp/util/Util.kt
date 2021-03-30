@@ -29,11 +29,11 @@ fun publishAtFormat(dateOfPublishing: String?): String? {
 
         var parsed: Date?
         var outputDate = ""
-        val df_input = SimpleDateFormat(inputFormat, Locale.getDefault())
-        val df_output = SimpleDateFormat(outputFormat, Locale.getDefault())
+        val dfInput = SimpleDateFormat(inputFormat, Locale.getDefault())
+        val dfOutput = SimpleDateFormat(outputFormat, Locale.getDefault())
         try {
-            parsed = df_input.parse(dateOfPublishing)
-            outputDate = df_output.format(parsed)
+            parsed = dfInput.parse(dateOfPublishing)
+            outputDate = dfOutput.format(parsed)
         } catch (e: ParseException) {
             Timber.i("$e")
         }

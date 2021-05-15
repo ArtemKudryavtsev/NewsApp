@@ -2,12 +2,14 @@ package com.artemkudryavtsev.newsapp.settings.languageandregion
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentLanguageAndRegionBinding
 
@@ -45,6 +47,13 @@ class LanguageAndRegionFragment : Fragment() {
         binding.languageAndRegionRecyclerView.adapter = adapter
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.topAppBar.setupWithNavController(findNavController())
+        binding.topAppBar.title =
+            resources.getString(R.string.language_and_region_appbar_title)
     }
 
     private fun updateAdapterData(countryCode: String) {

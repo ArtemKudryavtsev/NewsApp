@@ -2,11 +2,11 @@ package com.artemkudryavtsev.newsapp.settings
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentSettingsBinding
@@ -27,6 +27,11 @@ class SettingsFragment : Fragment() {
                 .navigate(SettingsFragmentDirections.actionSettingsFragmentToLanguageAndRegionFragment())
         }
 
+        binding.settingArticleTextSize.setOnClickListener {
+            findNavController()
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToArticleTextSizeFragment())
+        }
+
         val sharedPref = activity?.getSharedPreferences(
             getString(R.string.sharedPreferenceFile), Context.MODE_PRIVATE
         )
@@ -36,7 +41,13 @@ class SettingsFragment : Fragment() {
             getString(R.string.defaultCountryCodeKey)
         ) ?: getString(R.string.defaultCountryCodeKey)
 
+        val articleTextSize = sharedPref?.getString(
+            getString(R.string.article_text_size_key),
+            getString(R.string.normal)
+        ) ?: getString(R.string.normal)
+
         binding.settingLanguageAndRegionCurrent.text = getCountryByCode(countryCode)
+        binding.settingArticleTextSizeCurrent.text = articleTextSize
 
         return binding.root
     }

@@ -26,4 +26,10 @@
 
     <string name="add_to_bookmarks">Add to bookmarks</string>
     <string name="remove_from_bookmarks">Remove from bookmarks</string>
+    <string name="language_and_region_appbar_title">Language and regions</string>
+    <string name="article_text_size_appbar_title">Article text size</string>
+    <string name="small">Small</string>
+    <string name="normal">Normal</string>
+    <string name="large">Large</string>
+    <string name="article_text_size_key">articleTextSizeKey</string>
 </resources>

@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_languageAndRegionFragment"
             app:destination="@id/languageAndRegionFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_articleTextSizeFragment"
+            app:destination="@id/articleTextSizeFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
@@ -46,4 +49,9 @@
         android:name="com.artemkudryavtsev.newsapp.settings.languageandregion.LanguageAndRegionFragment"
         android:label="fragment_language_and_region"
         tools:layout="@layout/fragment_language_and_region" />
+    <fragment
+        android:id="@+id/articleTextSizeFragment"
+        android:name="com.artemkudryavtsev.newsapp.settings.articletextsize.ArticleTextSizeFragment"
+        android:label="ArticleTextSizeFragment"
+        tools:layout="@layout/fragment_article_text_size"/>
 </navigation>

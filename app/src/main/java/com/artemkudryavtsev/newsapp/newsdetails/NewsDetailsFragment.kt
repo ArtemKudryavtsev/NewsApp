@@ -1,5 +1,6 @@
 package com.artemkudryavtsev.newsapp.newsdetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
@@ -85,6 +86,29 @@ class NewsDetailsFragment : Fragment() {
                 }
             }
         })
+
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.sharedPreferenceFile), Context.MODE_PRIVATE
+        )
+
+        val articleTextSize = sharedPref?.getString(
+            getString(R.string.article_text_size_key),
+            getString(R.string.normal)
+        ) ?: getString(R.string.normal)
+
+        when (articleTextSize) {
+            getString(R.string.small) -> {
+                binding.newsDetailsContent.textSize = 12f;
+            }
+
+            getString(R.string.large) -> {
+                binding.newsDetailsContent.textSize = 16f;
+            }
+
+            else -> {
+                binding.newsDetailsContent.textSize = 14f;
+            }
+        }
     }
 
     private fun bookmarkTheArticle() {

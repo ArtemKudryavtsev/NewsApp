@@ -5,5 +5,8 @@
     <dimen name="viewholder_divider_margin">16dp</dimen>
     <dimen name="fragment_container_margin_bottom">56dp</dimen>
     <dimen name="bottom_navigation_view_height">56dp</dimen>
+    <dimen name="paddingLeftRight">16dp</dimen>
+    <dimen name="paddingTop">14dp</dimen>
+    <dimen name="paddingBottom">10dp</dimen>
 </resources>
 

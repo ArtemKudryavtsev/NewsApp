@@ -92,7 +92,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/settingNotificationTitle" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/notificayionsSwitch"
+                        android:id="@+id/notificationsSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="26dp"
@@ -177,8 +177,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/settingArticleTextSize"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/settingArticleTextSizeTitle"
@@ -198,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="15dp"
-                        android:text="@string/textViewPlaceholder"
+                        android:text="@string/normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/settingArticleTextSizeTitle" />

@@ -78,12 +78,13 @@
 
                 <TextView
                     android:id="@+id/newsDetailsContent"
-                    style="@style/newsDetailsContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/newsDetailsImage"

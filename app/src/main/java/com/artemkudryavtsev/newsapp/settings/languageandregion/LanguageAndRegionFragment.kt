@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.artemkudryavtsev.newsapp.R
 import com.artemkudryavtsev.newsapp.databinding.FragmentLanguageAndRegionBinding
 
@@ -36,6 +38,18 @@ class LanguageAndRegionFragment : Fragment() {
             R.layout.fragment_language_and_region,
             container,
             false
+        )
+
+        val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.divider_layer,
+                null
+            )!!
+        )
+        binding.languageAndRegionRecyclerView.addItemDecoration(
+            dividerItemDecoration
         )
 
         adapter = LanguageAndRegionAdapter(countryCode, LanguageAndRegionAdapter.OnClickListener {
